@@ -3,23 +3,23 @@
         <mat-divider [inset]="true"></mat-divider>
     <h2 class="underlineHover" routerLink="/diary" routerLinkActive="active">MY Diary</h2>
 </mat-card>
-<table *ngIf="userDetails" class="table-fill">
+<table class="table-fill">
     <thead>
         <tr>
             <th colspan="2" class="text-center">User Profile</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr *ngIf="userDetails">
             <td>First Name</td>
             <td>{{userDetails.fullName.split(' ')[0]}}</td>
         </tr>
-        <tr>
+        <tr *ngIf="userDetails">
             <td>Last Name</td>
             <td>{{userDetails.fullName.split(' ')[userDetails.fullName.split(' ').length]}}</td>
         </tr>
         <tr>
-            <td>Email</td>
+            <td *ngIf="userDetails">Email</td>
             <td>{{userDetails.email}}</td>
         </tr>
         <tr>
