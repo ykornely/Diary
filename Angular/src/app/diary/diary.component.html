@@ -1,0 +1,30 @@
+<mat-card id="pages">
+    <h2 class="underlineHover" routerLink="/userprofile" routerLinkActive="active">My Account</h2>
+        <mat-divider [inset]="true"></mat-divider>
+    <h2 class="underlineHover" routerLink="/diary" routerLinkActive="active">MY Diary</h2>
+</mat-card>
+<div class="table-fill" style="background-color: black">
+<form #diaryForm="ngForm" (ngSubmit)="onSubmit(diaryForm)">
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="selectedParagraph._id">
+    <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" #title="ngModel" [(ngModel)]="selectedParagraph.title" placeholder="Title" style="color: white">
+    </mat-form-field>
+    <mat-divider [inset]="true"></mat-divider>
+    <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Content</mat-label>
+        <textarea matInput type="text" name="content" #content="ngModel" [(ngModel)]="selectedParagraph.content" placeholder="Content" style="height: 100px; resize: none; color: white"></textarea>
+    </mat-form-field>
+    <input *ngIf="selectedParagraph._id == ''" type="submit" value="Add">
+    <input *ngIf="selectedParagraph._id != ''" type="submit" value="Update">
+    <button *ngIf="selectedParagraph._id != ''" mat-raised-button color="Primary" (click)="resetForm()">New</button>
+</form>
+</div>
+<div *ngFor="let paragraph of paragraphs" class="table-fill" style="background-color: grey">
+    <mat-card style="height: 100%">
+        <h2>{{paragraph.title}}</h2>
+        <p>{{paragraph.content}}</p>
+        <button mat-raised-button color="accent" (click)="onEdit(paragraph)">Edit</button>
+        <button mat-raised-button color="warn" (click)="onDelete(paragraph, diaryForm)">Delete</button>
+    </mat-card>
+</div>

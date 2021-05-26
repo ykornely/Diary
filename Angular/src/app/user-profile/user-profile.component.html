@@ -1,0 +1,31 @@
+<mat-card id="pages">
+    <h2 class="underlineHover" routerLink="/userprofile" routerLinkActive="active">My Account</h2>
+        <mat-divider [inset]="true"></mat-divider>
+    <h2 class="underlineHover" routerLink="/diary" routerLinkActive="active">MY Diary</h2>
+</mat-card>
+<table *ngIf="userDetails" class="table-fill">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-center">User Profile</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First Name</td>
+            <td>{{userDetails.fullName.split(' ')[0]}}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{userDetails.fullName.split(' ')[userDetails.fullName.split(' ').length]}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{userDetails.email}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center">
+                <button mat-raised-button (click)="onLogout()">Logout</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
